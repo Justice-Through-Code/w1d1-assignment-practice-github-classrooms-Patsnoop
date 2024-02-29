@@ -3,7 +3,8 @@ import datetime
 def is_happy_hour(user_date, user_time):
     today = datetime.datetime.strptime(user_date, "%Y-%m-%d").date()
     user_time = datetime.datetime.strptime(user_time, "%H:%M").time()
-
+    # print(today)
+    # print(user_time)
     if is_christmas(today):
         return False
     elif is_easter(today):
@@ -14,13 +15,22 @@ def is_happy_hour(user_date, user_time):
         return 17 <= user_time.hour < 19  # Happy hour between 5 PM and 7 PM
 
 def is_christmas(date):
-    #ENTER CODE HERE
+    # print(date[:-5])
+    # return date == datetime.date(date.year, 12, 25)
+    if date.month == 12 and date.day == 25:
+        return True
+
 
 def is_easter(date):
-    return date == calc_easter_sunday(date.year)
+    if date == calc_easter_sunday(date.year):
+        return True
+    
 
 def is_sunday(date):
-    #ENTER CODE HERE
+    if date.weekday() == 6:
+        return False
+
+    # return date == datetime.date()
 
 def calc_easter_sunday(year):
     a = year % 19
@@ -44,3 +54,4 @@ if __name__ == "__main__":
 
     result = is_happy_hour(user_date, user_time)
     print("Is it happy hour?", result)
+    
